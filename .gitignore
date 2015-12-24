@@ -1,4 +1,5 @@
 nimcache/
+public/upfiles/*
 *.exe
 *.so
 *.dll
