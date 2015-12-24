@@ -32,7 +32,8 @@ routes:
     resp(html)
 
   post "/upload":
-    writeFile("upload.jpg", request.formData["file"].body)
-    resp(request.formData["file"].body)
+    var data = request.formData["file"].body
+    writeFile("upload.jpg", data)
+    resp(data)
 
 runForever()
