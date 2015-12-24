@@ -2,6 +2,7 @@
 import
   jester, asyncdispatch, htmlgen
 
+const DEFAULT_CONTENT_TYPE = "text/html; charset=utf-8"
 routes:
   get "/":
     resp h1("Hello world")
