@@ -44,9 +44,7 @@ routes:
   post "/upload":
     var data = request.formData["file"].body
     var timestamp = int(toSeconds(getTime()))
-    echo "fileext: ", splitFile(request.formData["file"].fields["filename"])
     var (dir, filename, ext) = splitFile(request.formData["file"].fields["filename"])
-    #var ext = getExt(mimedb, request.formData["file"].fields["Content-Type"])
     var newfilename = addFileExt($timestamp, ext)
     writeFile("public/upfiles/" & newfilename, data)
     redirect("/upfiles/" & newfilename)
