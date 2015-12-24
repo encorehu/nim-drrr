@@ -2,6 +2,8 @@
 import
   jester, asyncdispatch, htmlgen
 
+import os
+
 const DEFAULT_CONTENT_TYPE = "text/html; charset=utf-8"
 routes:
   get "/":
@@ -29,5 +31,8 @@ routes:
     html.add "</form>"
     resp(html)
 
+  post "/upload":
+    writeFile("upload.jpg", request.formData["file"].body)
+    resp(request.formData["file"].body)
 
 runForever()
