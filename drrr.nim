@@ -36,6 +36,7 @@ routes:
     var data = request.formData["file"].body
     var timestamp = int(toSeconds(getTime()))
     writeFile("public/upfiles/" & $timestamp & ".jpg", data)
-    resp(data, contentType="image/jpeg")
+    #resp(data, contentType="image/jpeg")
+    redirect("/upfiles/" & $timestamp & ".jpg")
 
 runForever()
