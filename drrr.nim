@@ -4,6 +4,7 @@ import
 
 import os
 import times
+import strutils
 
 include "main.tmpl"
 
@@ -29,7 +30,7 @@ routes:
   get "/upload":
     var html = ""
     for file in walkFiles("public/upfiles/*.*"):
-      html.add "<li>" & file & "</li>"
+      html.add "<li>" & file.replace("\\","/") & "</li>"
     html.add "<form action=\"upload\" method=\"post\"enctype=\"multipart/form-data\">"
     html.add "<input type=\"file\" name=\"file\" value=\"file\">"
     html.add "<input type=\"submit\" value=\"Submit\" name=\"submit\">"
