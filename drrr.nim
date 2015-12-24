@@ -5,6 +5,8 @@ import
 import os
 import times
 
+include "main.tmpl"
+
 const DEFAULT_CONTENT_TYPE = "text/html; charset=utf-8"
 routes:
   get "/":
