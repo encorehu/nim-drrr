@@ -30,7 +30,7 @@ routes:
   get "/upload":
     var html = ""
     for file in walkFiles("public/upfiles/*.*"):
-      html.add "<li>" & file.replace("\\","/") & "</li>"
+      html.add "<li>" & file["public/".len..^1].replace("\\","/") & "</li>"
     html.add "<form action=\"upload\" method=\"post\"enctype=\"multipart/form-data\">"
     html.add "<input type=\"file\" name=\"file\" value=\"file\">"
     html.add "<input type=\"submit\" value=\"Submit\" name=\"submit\">"
