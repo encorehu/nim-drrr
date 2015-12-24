@@ -3,6 +3,7 @@ import
   jester, asyncdispatch, htmlgen
 
 import os
+import times
 
 const DEFAULT_CONTENT_TYPE = "text/html; charset=utf-8"
 routes:
@@ -33,7 +34,8 @@ routes:
 
   post "/upload":
     var data = request.formData["file"].body
-    writeFile("upload.jpg", data)
+    var timestamp = int(toSeconds(getTime()))
+    writeFile("public/upfiles/" & $timestamp & ".jpg", data)
     resp(data)
 
 runForever()
