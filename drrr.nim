@@ -5,10 +5,13 @@ import
 import os
 import times
 import strutils
+import mimetypes
 
 include "main.tmpl"
 
 const DEFAULT_CONTENT_TYPE = "text/html; charset=utf-8"
+const LINE = "------------------------"
+let mimedb = newMimetypes()
 routes:
   get "/":
     let headers = {"Content-type": "text/html; charset=utf-8"}
@@ -40,10 +43,23 @@ routes:
 
   post "/upload":
     for k in  request.formData.keys():
-      echo k
+      echo k, request.formData[k]
+      if k=="file":
+        #for key,value in request.formData[k].fields:
+        #  echo LINE,"\n", key,value,LINE,"\n"
+        #echo "name:", request.formData[k].fields["name"]
+        #echo "filename", request.formData[k].fields["filename"]
+        #echo "Content-Type", request.formData[k].fields["Content-Type"]
+        #echo "Content-Disposition", request.formData[k].fields["Content-Disposition"]
+        #echo request.formData[k].fields.filename
+        echo getExt(mimedb, request.formData[k].fields["Content-Type"])
+        echo extractFilename( request.formData[k].fields["filename"])
+        echo changeFileExt( request.formData[k].fields["filename"], getExt(mimedb, request.formData[k].fields["Content-Type"]))
     var data = request.formData["file"].body
     var timestamp = int(toSeconds(getTime()))
-    writeFile("public/upfiles/" & $timestamp & ".jpg", data)
-    redirect("/upfiles/" & $timestamp & ".jpg")
+    var ext = getExt(mimedb, request.formData["file"].fields["Content-Type"])
+    var newfilename = addFileExt($timestamp, ext)
+    writeFile("public/upfiles/" & newfilename, data)
+    redirect("/upfiles/" & newfilename)
 
 runForever()
