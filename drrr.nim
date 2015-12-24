@@ -13,7 +13,8 @@ routes:
     let headers = {"Content-type": "text/html; charset=utf-8"}
     resp Http200, headers, a(href="/upload", "上传文件")
   get "/lounge":
-    resp h1("lounge page")
+    let data = generateHTMLPage("主页", h1("lounge page"))
+    resp data, DEFAULT_CONTENT_TYPE
   get "/room":
     resp h1("room page"), DEFAULT_CONTENT_TYPE
   get "/create_room":
