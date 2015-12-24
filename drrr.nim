@@ -9,7 +9,7 @@ routes:
   get "/lounge":
     resp h1("lounge page")
   get "/room":
-    resp h1("Hello world")
+    resp h1("room page"), DEFAULT_CONTENT_TYPE
   get "/create_room":
     resp h1("Hello world")
   get "/json":
