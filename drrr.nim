@@ -11,7 +11,7 @@ routes:
   get "/room":
     resp h1("room page"), DEFAULT_CONTENT_TYPE
   get "/create_room":
-    resp h1("Hello world")
+    resp h1("create room page")
   get "/json":
     resp h1("Hello world")
 
