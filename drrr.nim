@@ -10,7 +10,8 @@ include "main.tmpl"
 const DEFAULT_CONTENT_TYPE = "text/html; charset=utf-8"
 routes:
   get "/":
-    resp h1("Hello world")
+    let headers = {"Content-type": "text/html; charset=utf-8"}
+    resp Http200, headers, a(href="/upload", "上传文件")
   get "/lounge":
     resp h1("lounge page")
   get "/room":
