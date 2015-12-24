@@ -19,5 +19,15 @@ routes:
     attachment "public/root/index.html"
     resp "blah"
 
+  get "/upload":
+    var html = ""
+    for file in walkFiles("upload/*.*"):
+      html.add "<li>" & file & "</li>"
+    html.add "<form action=\"upload\" method=\"post\"enctype=\"multipart/form-data\">"
+    html.add "<input type=\"file\" name=\"file\" value=\"file\">"
+    html.add "<input type=\"submit\" value=\"Submit\" name=\"submit\">"
+    html.add "</form>"
+    resp(html)
+
 
 runForever()
