@@ -7,7 +7,7 @@ routes:
   get "/":
     resp h1("Hello world")
   get "/lounge":
-    resp h1("Hello world")
+    resp h1("lounge page")
   get "/room":
     resp h1("Hello world")
   get "/create_room":
