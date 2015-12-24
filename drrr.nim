@@ -42,19 +42,6 @@ routes:
     resp(html)
 
   post "/upload":
-    for k in  request.formData.keys():
-      echo k, request.formData[k]
-      if k=="file":
-        #for key,value in request.formData[k].fields:
-        #  echo LINE,"\n", key,value,LINE,"\n"
-        #echo "name:", request.formData[k].fields["name"]
-        #echo "filename", request.formData[k].fields["filename"]
-        #echo "Content-Type", request.formData[k].fields["Content-Type"]
-        #echo "Content-Disposition", request.formData[k].fields["Content-Disposition"]
-        #echo request.formData[k].fields.filename
-        echo getExt(mimedb, request.formData[k].fields["Content-Type"])
-        echo extractFilename( request.formData[k].fields["filename"])
-        echo changeFileExt( request.formData[k].fields["filename"], getExt(mimedb, request.formData[k].fields["Content-Type"]))
     var data = request.formData["file"].body
     var timestamp = int(toSeconds(getTime()))
     var ext = getExt(mimedb, request.formData["file"].fields["Content-Type"])
