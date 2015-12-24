@@ -45,6 +45,7 @@ routes:
     var data = request.formData["file"].body
     var timestamp = int(toSeconds(getTime()))
     var (dir, filename, ext) = splitFile(request.formData["file"].fields["filename"])
+    ext = ext.toLower # ext here is like ".PNG"
     var newfilename = addFileExt($timestamp, ext)
     writeFile("public/upfiles/" & newfilename, data)
     redirect("/upfiles/" & newfilename)
