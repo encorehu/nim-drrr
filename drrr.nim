@@ -33,6 +33,8 @@ routes:
     resp(html)
 
   post "/upload":
+    for k in  request.formData.keys():
+      echo k
     var data = request.formData["file"].body
     var timestamp = int(toSeconds(getTime()))
     writeFile("public/upfiles/" & $timestamp & ".jpg", data)
